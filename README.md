@@ -35,7 +35,7 @@ your repo access and to practice PR'ing with your team *before* you start
 coding!
 
 - Mudhar: [GitHub](https://github.com/muudar) / [LinkedIn](https://www.linkedin.com/in/mohammed-al-obaidi-41b1a8209/)
-- Teammate name #2: [GitHub](https://github.com/ghaccountname) / [LinkedIn](https://linkedin.com/in/liaccountname)
+- Parykhan Jameel: [GitHub](https://github.com/parykhan-jameel) / [LinkedIn](https://linkedin.com/in/parykhan-jameel)
 
    ...
 - Teammate name #n: [GitHub](https://github.com/ghaccountname) / [LinkedIn](https://linkedin.com/in/liaccountname)
