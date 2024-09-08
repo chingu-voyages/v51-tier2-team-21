@@ -37,5 +37,7 @@ coding!
 - Mudhar: [GitHub](https://github.com/muudar) / [LinkedIn](https://www.linkedin.com/in/mohammed-al-obaidi-41b1a8209/)
 - Parykhan Jameel: [GitHub](https://github.com/parykhan-jameel) / [LinkedIn](https://linkedin.com/in/parykhan-jameel)
 
+
+- Marwan Baz: [GitHub](https://github.com/marwanbz) / [LinkedIn](https://www.linkedin.com/in/marwanbz/)
    ...
 - Teammate name #n: [GitHub](https://github.com/ghaccountname) / [LinkedIn](https://linkedin.com/in/liaccountname)
