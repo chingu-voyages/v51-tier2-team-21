@@ -6,7 +6,7 @@ as you would any other component of the application.
 
 If you are unsure of what should go into the `readme` let this article,
 written by an experienced Chingu, be your starting point - 
-[Keys to a well written README](https://tinyurl.com/yk3wubft).
+[Keys to a well-written README](https://tinyurl.com/yk3wubft).
 
 And before we go there's "one more thing"! Once you decide what to include
 in your `readme` feel free to replace the text we've provided here.
@@ -36,6 +36,11 @@ coding!
 
 - Mudhar: [GitHub](https://github.com/muudar) / [LinkedIn](https://www.linkedin.com/in/mohammed-al-obaidi-41b1a8209/)
 - Parykhan Jameel: [GitHub](https://github.com/parykhan-jameel) / [LinkedIn](https://linkedin.com/in/parykhan-jameel)
-
-   ...
+- Amin Alizadeh: [GitHub](https://github.com/m-aminalizadeh) / [LinkedIn](https://www.linkedin.com/in/m-amin-alizadeh/)
+- Marwan Baz: [GitHub](https://github.com/marwanbz) / [LinkedIn](https://www.linkedin.com/in/marwanbz/)
+- Nadiia Lashtun: [GitHub](https://github.com/NadiiaLashtun) / [LinkedIn](https://www.linkedin.com/in/lashtun/)
+- Oluwadunsin Falore [Github]
+- https://github.com/Dunsin0802
+- [LinkedIn]
+- http://linkedin.com/in/oluwadunsin-falore
 - Teammate name #n: [GitHub](https://github.com/ghaccountname) / [LinkedIn](https://linkedin.com/in/liaccountname)
