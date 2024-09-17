@@ -39,8 +39,5 @@ coding!
 - Amin Alizadeh: [GitHub](https://github.com/m-aminalizadeh) / [LinkedIn](https://www.linkedin.com/in/m-amin-alizadeh/)
 - Marwan Baz: [GitHub](https://github.com/marwanbz) / [LinkedIn](https://www.linkedin.com/in/marwanbz/)
 - Nadiia Lashtun: [GitHub](https://github.com/NadiiaLashtun) / [LinkedIn](https://www.linkedin.com/in/lashtun/)
-- Oluwadunsin Falore [Github]
-- https://github.com/Dunsin0802
-- [LinkedIn]
-- http://linkedin.com/in/oluwadunsin-falore
+- Oluwadunsin Falore https://github.com/Dunsin0802  http://linkedin.com/in/oluwadunsin-falore
 - Teammate name #n: [GitHub](https://github.com/ghaccountname) / [LinkedIn](https://linkedin.com/in/liaccountname)
