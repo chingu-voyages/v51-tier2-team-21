@@ -7,6 +7,7 @@ const ExpenseGroupList = () => {
   return (
     <div>
       <h1>Expense Groups</h1>
+      {expenseGroups.length === 0 && <p>No expense groups found</p>}
       <ul>
         {expenseGroups.map((group, index) => (
           <li key={index}>
