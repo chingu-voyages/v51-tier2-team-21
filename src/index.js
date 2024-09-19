@@ -7,6 +7,7 @@ import {
 } from "react-router-dom";
 import './index.css';
 import ExpenseGroup from './components/ExpenseGroup.tsx';
+import { ExpenseGroupProvider } from './context/ExpenseGroupContext.tsx';
 
 const router = createBrowserRouter([
   {
@@ -22,7 +23,9 @@ const router = createBrowserRouter([
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+    <ExpenseGroupProvider>
+      <RouterProvider router={router} />
+    </ExpenseGroupProvider>
   </React.StrictMode>
 );
 
