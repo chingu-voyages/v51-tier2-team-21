@@ -19,9 +19,19 @@ function Layout({element}) {
             </Link>
             <ul className="space-y-2 font-medium">
               <li>
-                <Link to="/create-expense-group" href="#" className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+                <Link 
+                  to="/create-expense-group" 
+                  className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
                   <img src="https://img.icons8.com/sf-black/30/group-foreground-selected.png" alt="group-foreground-selected"/>
                   <span className="ms-3">Create Expense Group</span>
+                </Link>
+              </li>
+              <li>
+                <Link 
+                  to="/expense-group-list" 
+                  className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+                  <img src="https://img.icons8.com/sf-black/30/group-foreground-selected.png" alt="group-foreground-selected"/>
+                  <span className="ms-3">Expense Group List</span>
                 </Link>
               </li>
             </ul>
