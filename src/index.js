@@ -8,6 +8,7 @@ import {
 import './index.css';
 import ExpenseGroup from './components/ExpenseGroup.tsx';
 import { ExpenseGroupProvider } from './context/ExpenseGroupContext.tsx';
+import ExpenseGroupList from './components/ExpenseGroupList.tsx';
 
 const router = createBrowserRouter([
   {
@@ -17,6 +18,10 @@ const router = createBrowserRouter([
   {
     path: "/create-expense-group",
     element: <Layout element={<ExpenseGroup/>} />,
+  },
+  {
+    path: "/expense-group-list",
+    element: <Layout element={<ExpenseGroupList/>} />,
   }
 ]);
 
