@@ -9,7 +9,7 @@ interface Developer {
 
 function Footer() {
   return (
-    <div className='bg-[#B0BEC5] text-white py-3'>
+    <div className='bg-[#B0BEC5] text-white py-3 absolute bottom-0 left-0 right-0'>
       <h2 className='text-center mb-3'>Our team</h2>
       <div className='flex flex-wrap justify-evenly gap-4 mb-3 px-3'>
         <div>
