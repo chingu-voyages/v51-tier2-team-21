@@ -1,5 +1,5 @@
-import TEAM from "../data/DevelopersInfo";
-import FooterDeveloperName from "./FooterDeveloperName";
+import TEAM from "../data/DevelopersInfo.ts";
+import FooterDeveloperName from "./FooterDeveloperName.tsx";
 
 interface Developer {
   name: string;
