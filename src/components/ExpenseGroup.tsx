@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useExpenseGroupContext } from "../context/ExpenseGroupContext";
+import { useExpenseGroupContext } from "../context/ExpenseGroupContext.tsx";
 
 const ExpenseGroup = () => {
   const { addExpenseGroup } = useExpenseGroupContext();
