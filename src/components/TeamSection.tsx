@@ -5,7 +5,7 @@ const TeamSection: React.FC = () => {
   const teamMembers = [...TEAM.DEVELOPERS, TEAM.SCRUMMASTER];
 
   return (
-    <div className="font-[sans-serif] lg:max-w-5xl sm:max-w-2xl max-sm:max-w-sm mx-auto mt-4 text-center">
+    <div className="font-[sans-serif] pb-16 lg:max-w-5xl sm:max-w-2xl max-sm:max-w-sm mx-auto mt-4 text-center">
       <h2 className="text-gray-800 text-3xl  font-extrabold border-b-2 border-[#2f855a] inline-block">
         Our Team
       </h2>
