@@ -1,21 +1,26 @@
+import React, { useState } from "react";
+
 import { Link } from "react-router-dom";
-import React from "react";
+
 const Header: React.FC = () => {
+  const [menuOpen, setMenuOpen] = useState(false);
+
+  const handleEnvelopeClick = () => {
+    setMenuOpen(!menuOpen); // Toggles the menu state
+  };
+
   return (
     <header className="flex shadow-md py-4 px-4 sm:px-10 bg-white font-sans min-h-[70px] tracking-wide relative z-50">
       <div className="flex flex-wrap items-center justify-between gap-5 w-full">
         {/* Logo */}
-        <a href="/">
-          <img
-            src="https://readymadeui.com/readymadeui.svg"
-            alt="logo"
-            className="w-36"
-          />
+        <a href="/" className="flex justify-center items-center gap-x-2 font-semibold">
+          <img src="/assets/logo.png" alt="logo" className="w-8" />
+          NitSpit
         </a>
 
         {/* Navbar Links */}
-        <div id="collapseMenu" className="hidden lg:block">
-          <ul className="lg:flex gap-x-5">
+        <div id="collapseMenu" className="hidden sm:block">
+          <ul className="sm:flex gap-x-5">
             <li>
               <a
                 href="#features"
@@ -51,7 +56,11 @@ const Header: React.FC = () => {
         </div>
 
         {/* Mobile Menu Toggle */}
-        <button id="toggleOpen" className="lg:hidden">
+        <button
+          id="toggleOpen"
+          className="sm:hidden"
+          onClick={handleEnvelopeClick}
+        >
           <svg
             className="w-7 h-7"
             fill="#000"
@@ -65,6 +74,38 @@ const Header: React.FC = () => {
             />
           </svg>
         </button>
+
+        {/* Mobile Menu - conditionally rendered based on menuOpen state */}
+        {menuOpen && (
+          <div className="sm:hidden absolute top-full left-0 w-full bg-white shadow-md z-50">
+            <ul className="flex flex-col items-center space-y-4 p-4">
+              <li>
+                <a
+                  href="#features"
+                  className="hover:text-[#38A169] text-[#333] block font-semibold text-[15px]"
+                >
+                  Features
+                </a>
+              </li>
+              <li>
+                <a
+                  href="#team"
+                  className="hover:text-[#38A169] text-[#333] block font-semibold text-[15px]"
+                >
+                  Team
+                </a>
+              </li>
+              <li>
+                <a
+                  href="#testimonials"
+                  className="hover:text-[#38A169] text-[#333] block font-semibold text-[15px]"
+                >
+                  Testimonials
+                </a>
+              </li>
+            </ul>
+          </div>
+        )}
       </div>
     </header>
   );
