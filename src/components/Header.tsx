@@ -39,7 +39,7 @@ const Header: React.FC = () => {
             </li>
             <li>
               <a
-                href="#testimonials"
+                href="/#testimonials"
                 className="hover:text-[#38A169] text-[#333] block font-semibold text-[15px]"
               >
                 Testimonials
