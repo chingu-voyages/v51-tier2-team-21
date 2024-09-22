@@ -2,6 +2,8 @@ interface Developer {
   name: string;
   github: string;
   linkedin: string;
+  role: string;
+  image: string;
 }
 
 const DEVELOPERS: Developer[] = [
