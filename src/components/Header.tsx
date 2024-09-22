@@ -1,27 +1,24 @@
 import React, { useState } from "react";
 
-import { Link } from "react-router-dom";
-
 const Header: React.FC = () => {
   const [menuOpen, setMenuOpen] = useState(false);
 
   const handleEnvelopeClick = () => {
-    setMenuOpen(!menuOpen); // Toggles the menu state
+    setMenuOpen(!menuOpen); 
   };
 
   return (
     <header className="flex shadow-md py-4 px-4 sm:px-10 bg-white font-sans min-h-[70px] tracking-wide relative z-50">
       <div className="flex flex-wrap items-center justify-between gap-5 w-full">
-        {/* Logo */}
+        
         <a
           href="/"
           className="flex justify-center items-center gap-x-2 font-semibold"
         >
           <img src="/assets/logo.png" alt="logo" className="w-8" />
-          NitSpit
+          SplitWind
         </a>
 
-        {/* Navbar Links */}
         <div id="collapseMenu" className="hidden sm:block">
           <ul className="sm:flex gap-x-5">
             <li>
@@ -51,14 +48,12 @@ const Header: React.FC = () => {
           </ul>
         </div>
 
-        {/* Get Started Button */}
         <div className="flex max-sm:hidden">
           <button className="px-4 py-2 text-sm rounded-lg font-bold text-white bg-[#38A169] hover:bg-[#2f855a] transition-all duration-300">
             Get started
           </button>
         </div>
 
-        {/* Mobile Menu Toggle */}
         <button
           id="toggleOpen"
           className="sm:hidden"
@@ -78,7 +73,6 @@ const Header: React.FC = () => {
           </svg>
         </button>
 
-        {/* Mobile Menu - conditionally rendered based on menuOpen state */}
         {menuOpen && (
           <div className="sm:hidden absolute top-full left-0 w-full bg-white shadow-md z-50">
             <ul className="flex flex-col items-center space-y-4 p-4">
