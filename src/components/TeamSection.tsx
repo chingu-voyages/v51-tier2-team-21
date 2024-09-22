@@ -1,4 +1,3 @@
-// import FooterDeveloperName from "./FooterDeveloperName.tsx";
 import React from "react";
 import TEAM from "../data/DevelopersInfo.ts";
 
@@ -6,8 +5,8 @@ const TeamSection: React.FC = () => {
   const teamMembers = [...TEAM.DEVELOPERS, TEAM.SCRUMMASTER];
 
   return (
-    <div className="font-[sans-serif] lg:max-w-5xl sm:max-w-2xl max-sm:max-w-sm mx-auto mt-4">
-      <h2 className="text-gray-800 text-3xl font-extrabold border-b-2 border-gray-800 inline-block">
+    <div className="font-[sans-serif] lg:max-w-5xl sm:max-w-2xl max-sm:max-w-sm mx-auto mt-4 text-center">
+      <h2 className="text-gray-800 text-3xl  font-extrabold border-b-2 border-[#2f855a] inline-block">
         Our Team
       </h2>
 
@@ -17,7 +16,6 @@ const TeamSection: React.FC = () => {
             key={index}
             className="grid grid-cols-3 items-center bg-gray-100 p-4 rounded-lg relative"
           >
-            {/* Image Section */}
             <div className="col-span-2 min-h-[190px]">
               <img
                 src={member.image}
@@ -26,13 +24,11 @@ const TeamSection: React.FC = () => {
               />
             </div>
 
-            {/* Information Section */}
             <div className="bg-white rounded-lg p-4 absolute right-4 shadow-[0_2px_22px_-4px_rgba(93,96,127,0.2)]">
               <h4 className="text-gray-800 text-sm font-bold">{member.name}</h4>
               <p className="text-[10px] text-gray-500 mt-0.5">United States</p>
               <p className="text-gray-800 mt-2 text-xs">{member.role}</p>
 
-              {/* GitHub and LinkedIn Links */}
               <div className="mt-2">
                 <a
                   href={member.github}
