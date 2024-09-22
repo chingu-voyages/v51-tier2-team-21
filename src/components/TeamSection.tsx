@@ -1,5 +1,5 @@
-import React from "react";
-import TEAM from "../data/DevelopersInfo.ts";
+import React from 'react';
+import TEAM from '../data/DevelopersInfo.ts';
 
 const TeamSection: React.FC = () => {
   const teamMembers = [...TEAM.DEVELOPERS, TEAM.SCRUMMASTER];

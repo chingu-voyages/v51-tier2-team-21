@@ -6,11 +6,12 @@ import './index.css';
 import ExpenseGroup from './components/ExpenseGroup.tsx';
 import { ExpenseGroupProvider } from './context/ExpenseGroupContext.tsx';
 import ExpenseGroupList from './components/ExpenseGroupList.tsx';
+import Hero from './components/Hero.tsx';
 
 const router = createBrowserRouter([
   {
     path: '/',
-    element: <Layout />,
+    element: <Hero />,
   },
   {
     path: '/create-expense-group',

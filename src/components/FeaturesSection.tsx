@@ -1,30 +1,30 @@
-import React from "react";
+import React from 'react';
 
 const FeaturesSection: React.FC = () => {
   const features = [
     {
-      icon: "😊", 
-      title: "User-Friendly Interface",
+      icon: '😊',
+      title: 'User-Friendly Interface',
       description:
-        "SplitWind offers an intuitive interface that makes it easy to track and split expenses in a few simple steps.",
+        'SplitWind offers an intuitive interface that makes it easy to track and split expenses in a few simple steps.',
     },
     {
-      icon: "🎨",
-      title: "Customizable Settings",
+      icon: '🎨',
+      title: 'Customizable Settings',
       description:
-        "Tailor the app to suit your needs with flexible settings and customization options.",
+        'Tailor the app to suit your needs with flexible settings and customization options.',
     },
     {
-      icon: "🔧", 
-      title: "Effortless Expense Management",
+      icon: '🔧',
+      title: 'Effortless Expense Management',
       description:
-        "Easily manage shared expenses among friends, family, or roommates, all in one place.",
+        'Easily manage shared expenses among friends, family, or roommates, all in one place.',
     },
     {
-      icon: "💬", 
-      title: "24/7 Support",
+      icon: '💬',
+      title: '24/7 Support',
       description:
-        "Get support whenever you need it with our dedicated team, available around the clock.",
+        'Get support whenever you need it with our dedicated team, available around the clock.',
     },
   ];
 

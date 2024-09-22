@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState } from 'react';
 
 interface Testimonial {
   name: string;
@@ -9,25 +9,25 @@ interface Testimonial {
 
 const testimonials: Testimonial[] = [
   {
-    name: "Jane Smith",
-    email: "jane.smith@email.com",
+    name: 'Jane Smith',
+    email: 'jane.smith@email.com',
     opinion:
-      "Amazing Experience: Seamless Group Expense Management with SplitWind.",
-    imgSrc: "https://readymadeui.com/profile_2.webp",
+      'Amazing Experience: Seamless Group Expense Management with SplitWind.',
+    imgSrc: 'https://readymadeui.com/profile_2.webp',
   },
   {
-    name: "John Doe",
-    email: "john.doe@email.com",
+    name: 'John Doe',
+    email: 'john.doe@email.com',
     opinion:
-      "Great tool for splitting expenses among friends. Love the ease of use!",
-    imgSrc: "https://readymadeui.com/profile_3.webp",
+      'Great tool for splitting expenses among friends. Love the ease of use!',
+    imgSrc: 'https://readymadeui.com/profile_3.webp',
   },
   {
-    name: "Sarah Connor",
-    email: "sarah.connor@email.com",
+    name: 'Sarah Connor',
+    email: 'sarah.connor@email.com',
     opinion:
-      "SplitWind makes managing expenses a breeze, especially on group trips.",
-    imgSrc: "https://readymadeui.com/profile_4.webp",
+      'SplitWind makes managing expenses a breeze, especially on group trips.',
+    imgSrc: 'https://readymadeui.com/profile_4.webp',
   },
 ];
 
@@ -39,9 +39,9 @@ const TestimonialCard: React.FC = () => {
       setCurrentTestimonialIndex((prevIndex) =>
         prevIndex === testimonials.length - 1 ? 0 : prevIndex + 1
       );
-    }, 5000); 
+    }, 5000);
 
-    return () => clearInterval(interval); 
+    return () => clearInterval(interval);
   }, []);
 
   const currentTestimonial = testimonials[currentTestimonialIndex];

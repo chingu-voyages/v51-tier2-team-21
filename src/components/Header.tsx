@@ -1,16 +1,15 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
 
 const Header: React.FC = () => {
   const [menuOpen, setMenuOpen] = useState(false);
 
   const handleEnvelopeClick = () => {
-    setMenuOpen(!menuOpen); 
+    setMenuOpen(!menuOpen);
   };
 
   return (
     <header className="flex shadow-md py-4 px-4 sm:px-10 bg-white font-sans min-h-[70px] tracking-wide relative z-50">
       <div className="flex flex-wrap items-center justify-between gap-5 w-full">
-        
         <a
           href="/"
           className="flex justify-center items-center gap-x-2 font-semibold"
