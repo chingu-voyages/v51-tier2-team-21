@@ -13,7 +13,10 @@ const Header: React.FC = () => {
     <header className="flex shadow-md py-4 px-4 sm:px-10 bg-white font-sans min-h-[70px] tracking-wide relative z-50">
       <div className="flex flex-wrap items-center justify-between gap-5 w-full">
         {/* Logo */}
-        <a href="/" className="flex justify-center items-center gap-x-2 font-semibold">
+        <a
+          href="/"
+          className="flex justify-center items-center gap-x-2 font-semibold"
+        >
           <img src="/assets/logo.png" alt="logo" className="w-8" />
           NitSpit
         </a>
@@ -49,8 +52,8 @@ const Header: React.FC = () => {
         </div>
 
         {/* Get Started Button */}
-        <div className="flex">
-          <button className="px-4 py-2 text-sm rounded-lg font-bold text-white border-2 border-[#38A169] bg-[#38A169] transition-all ease-in-out duration-300 hover:bg-transparent hover:text-[#38A169]">
+        <div className="flex max-sm:hidden">
+          <button className="px-4 py-2 text-sm rounded-lg font-bold text-white bg-[#38A169] hover:bg-[#2f855a] transition-all duration-300">
             Get started
           </button>
         </div>
@@ -103,6 +106,11 @@ const Header: React.FC = () => {
                   Testimonials
                 </a>
               </li>
+              <div className="flex sm:block">
+                <button className="px-4 py-2 text-sm rounded-lg font-bold text-white bg-[#38A169] hover:bg-[#2f855a] transition-all duration-300">
+                  Get started
+                </button>
+              </div>
             </ul>
           </div>
         )}
