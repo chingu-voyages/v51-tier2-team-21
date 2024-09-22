@@ -1,5 +1,5 @@
-import React from "react";
-import { useExpenseGroupContext } from "../context/ExpenseGroupContext.tsx";
+import React from 'react';
+import { useExpenseGroupContext } from '../context/ExpenseGroupContext.tsx';
 
 const ExpenseGroupList = () => {
   const { expenseGroups } = useExpenseGroupContext();

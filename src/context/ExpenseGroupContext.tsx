@@ -1,4 +1,4 @@
-import React, { createContext, useState, useContext } from "react";
+import React, { createContext, useState, useContext } from 'react';
 
 interface ExpenseGroup {
   name: string;
@@ -11,12 +11,16 @@ interface ExpenseGroupContextType {
   addExpenseGroup: (group: ExpenseGroup) => void;
 }
 
-const ExpenseGroupContext = createContext<ExpenseGroupContextType | undefined>(undefined);
+const ExpenseGroupContext = createContext<ExpenseGroupContextType | undefined>(
+  undefined
+);
 
 export const useExpenseGroupContext = () => {
   const context = useContext(ExpenseGroupContext);
   if (!context) {
-    throw new Error("useExpenseGroupContext must be used within an ExpenseGroupProvider");
+    throw new Error(
+      'useExpenseGroupContext must be used within an ExpenseGroupProvider'
+    );
   }
   return context;
 };
