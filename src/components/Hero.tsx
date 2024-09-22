@@ -11,12 +11,12 @@ const HeroSection: React.FC = () => {
             with SplitWind
           </h1>
           <div className="flex justify-center lg:justify-start gap-4 items-center">
-            <Link to="/get-started">
+            <Link to="/#get-started">
               <button className="px-8 py-3 text-lg font-semibold rounded-lg text-white bg-[#38A169] hover:bg-[#2f855a] transition-all duration-300">
                 Get started
               </button>
             </Link>
-            <Link to="/team">
+            <Link to="/#team">
               <button className="px-6 py-2 text-lg font-semibold rounded-lg text-[#2f855a] border-2 border-[#38A169] bg-white hover:bg-[#2f855a] hover:text-white transition-all duration-300">
                 Team
               </button>
