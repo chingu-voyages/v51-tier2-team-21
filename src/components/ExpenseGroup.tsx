@@ -5,14 +5,14 @@ const ExpenseGroup = () => {
   const { addExpenseGroup } = useExpenseGroupContext();
   const [name, setName] = useState('');
   const [description, setDescription] = useState('');
-  const [budget, setBudget] = useState(0);
+  const [budget, setBudget] = useState('');
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    addExpenseGroup({ name, description, budget });
+    addExpenseGroup({ name, description, budget: Number(budget) });
     setName('');
     setDescription('');
-    setBudget(0);
+    setBudget('');
   };
   return (
     <div>
@@ -57,7 +57,7 @@ const ExpenseGroup = () => {
             className="block p-2.5 w-full z-20 ps-10 text-sm text-gray-900 bg-gray-50 rounded-s-lg border-e-gray-50 border-e-2 border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-e-gray-700  dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:border-blue-500"
             placeholder="Enter Budget"
             value={budget}
-            onChange={(e) => setBudget(Number(e.target.value))}
+            onChange={(e) => setBudget(e.target.value)}
             required
           />
         </div>
