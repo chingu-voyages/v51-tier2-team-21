@@ -2,7 +2,14 @@ import React, { useState } from 'react';
 
 import { Link } from 'react-router-dom';
 
-const Header: React.FC = () => {
+interface HeaderProps{
+  onFeatureClick: () => void;
+  onTeamClick: () => void;
+  onTestimonialsClick: () => void;
+}
+
+
+const Header: React.FC<HeaderProps> = ({onFeatureClick,onTeamClick,onTestimonialsClick}) => {
   const [menuOpen, setMenuOpen] = useState(false);
 
   const handleEnvelopeClick = () => {
@@ -26,6 +33,7 @@ const Header: React.FC = () => {
               
               <a
                 href="#features"
+                onClick={onFeatureClick}
                 className="hover:text-[#38A169] text-[#333] block font-semibold text-[15px]"
               >
                 Features
@@ -34,6 +42,7 @@ const Header: React.FC = () => {
             <li>
               <a
                 href="#team"
+                onClick={onTeamClick}
                 className="hover:text-[#38A169] text-[#333] block font-semibold text-[15px]"
               >
                 Team
@@ -42,6 +51,7 @@ const Header: React.FC = () => {
             <li>
               <a
                 href="/#testimonials"
+                onClick={onTestimonialsClick}
                 className="hover:text-[#38A169] text-[#333] block font-semibold text-[15px]"
               >
                 Testimonials
