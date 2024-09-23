@@ -1,15 +1,15 @@
-import FeaturesSection from '../components/FeaturesSection';
-import Header from '../components/Header.tsx';
-import HeroSection from '../components/Hero';
+import FeaturesSection from './FeaturesSection.tsx';
+import Header from './Header.tsx';
+import Hero from './Hero.tsx';
 import React from "react";
-import TeamSection from '../components/TeamSection';
-import TestimonialCard from '../components/TestimonialsSection';
+import TeamSection from './TeamSection.tsx';
+import TestimonialCard from './TestimonialsSection.tsx';
 
 const LandingPage: React.FC = () => {
   return (
     <div>
       <Header />
-      <HeroSection />
+      <Hero />
       <FeaturesSection />
       <TestimonialCard />
       <TeamSection />
