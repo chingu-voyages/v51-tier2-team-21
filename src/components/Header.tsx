@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 
+import { Link } from 'react-router-dom';
+
 const Header: React.FC = () => {
   const [menuOpen, setMenuOpen] = useState(false);
 
@@ -21,6 +23,7 @@ const Header: React.FC = () => {
         <div id="collapseMenu" className="hidden sm:block">
           <ul className="sm:flex gap-x-5">
             <li>
+              
               <a
                 href="#features"
                 className="hover:text-[#38A169] text-[#333] block font-semibold text-[15px]"
@@ -48,9 +51,11 @@ const Header: React.FC = () => {
         </div>
 
         <div className="flex max-sm:hidden">
+          <Link  to="/create-expense-group">
           <button className="px-4 py-2 text-sm rounded-lg font-bold text-white bg-[#38A169] hover:bg-[#2f855a] transition-all duration-300">
             Get started
-          </button>
+          </button> 
+          </Link>
         </div>
 
         <button
