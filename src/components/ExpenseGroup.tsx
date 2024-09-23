@@ -1,19 +1,40 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useExpenseGroupContext } from '../context/ExpenseGroupContext.tsx';
+
+export interface ExpenseGroup {
+  ID: string;
+
+  name: string;
+
+  description: string;
+
+  budget: string;
+}
 
 const ExpenseGroup = () => {
   const { addExpenseGroup } = useExpenseGroupContext();
+  const [ID, setID] = useState('');
   const [name, setName] = useState('');
   const [description, setDescription] = useState('');
   const [budget, setBudget] = useState('');
 
+  const idGenerator = () => {
+    const numericalPart = Math.floor(Math.random() * 10 ** 9);
+    setID(String(numericalPart));
+  };
+
+  useEffect(() => {
+    idGenerator();
+  }, []);
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    addExpenseGroup({ name, description, budget: Number(budget) });
+    addExpenseGroup({ ID, name, description, budget });
     setName('');
     setDescription('');
     setBudget('');
   };
+
   return (
     <div>
       <h1>Expense Group</h1>
