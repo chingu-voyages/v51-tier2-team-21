@@ -27,9 +27,20 @@ const ExpenseGroup = () => {
     idGenerator();
   }, []);
 
+  useEffect(()=>{
+    const storedExpenseGroups = JSON.parse(localStorage.getItem('expenseGroups') || '[]');
+    storedExpenseGroups.forEach((group: any) => addExpenseGroup(group));
+  }, [])
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    addExpenseGroup({ ID, name, description, budget });
+    // Save data to localstorage
+    const newExpenseGroup = { ID, name, description, budget };
+    addExpenseGroup(newExpenseGroup);
+    const storedExpenseGroups = JSON.parse(localStorage.getItem('expenseGroups') || '[]');
+    storedExpenseGroups.push(newExpenseGroup);
+    localStorage.setItem('expenseGroups', JSON.stringify(storedExpenseGroups));
+    // Reset form
     setName('');
     setDescription('');
     setBudget('');
