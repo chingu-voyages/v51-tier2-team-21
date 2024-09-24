@@ -4,7 +4,7 @@ import DeleteAlert from './DeleteAlert.tsx';
 
 const ExpenseGroupList = () => {
   const { expenseGroups, deleteExpenseGroup } = useExpenseGroupContext();
-  // const [isDelete, setIsDelete] = useState(false);
+  const [isDelete, setIsDelete] = useState(false);
 
   return (
     <div>
@@ -48,7 +48,13 @@ const ExpenseGroupList = () => {
                   <button className="border font-medium text-yellow-400 p-2">
                     Edit
                   </button>
-                  <button className="border font-medium text-red-700 p-2" onClick={()=> deleteExpenseGroup(group.ID)}>
+                  <button
+                    className="border font-medium text-red-700 p-2"
+                    onClick={() => {
+                      deleteExpenseGroup(group.ID);
+                      setIsDelete(true);
+                    }}
+                  >
                     Delete
                   </button>
                 </td>
@@ -56,6 +62,7 @@ const ExpenseGroupList = () => {
             ))}
           </tbody>
         </table>
+        {isDelete ? <DeleteAlert /> : null}
       </div>
     </div>
   );
