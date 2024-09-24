@@ -10,6 +10,8 @@ interface ExpenseGroup {
 interface ExpenseGroupContextType {
   expenseGroups: ExpenseGroup[];
   addExpenseGroup: (group: ExpenseGroup) => void;
+  deleteExpenseGroup: (id: string) => void;
+  updateExpenseGroup: (updatedGroup: ExpenseGroup) => void;
 }
 
 const ExpenseGroupContext = createContext<ExpenseGroupContextType | undefined>(
@@ -51,9 +53,22 @@ export const ExpenseGroupProvider: React.FC = ({ children }) => {
     );
   };
 
+  const updateExpenseGroup = (updatedGroup: ExpenseGroup) => {
+    setExpenseGroups((prevGroups) =>
+      prevGroups.map((group) =>
+        group.ID === updatedGroup.ID ? updatedGroup : group
+      )
+    );
+  };
+
   return (
     <ExpenseGroupContext.Provider
-      value={{ expenseGroups, addExpenseGroup, deleteExpenseGroup }}
+      value={{
+        expenseGroups,
+        addExpenseGroup,
+        deleteExpenseGroup,
+        updateExpenseGroup,
+      }}
     >
       {children}
     </ExpenseGroupContext.Provider>

@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
 import { useExpenseGroupContext } from '../context/ExpenseGroupContext.tsx';
 import DeleteAlert from './DeleteAlert.tsx';
+import UpdateExpenseGroup from './UpdateExpenseGroup.tsx';
 
 const ExpenseGroupList = () => {
   const { expenseGroups, deleteExpenseGroup } = useExpenseGroupContext();
   const [isDelete, setIsDelete] = useState(false);
+  const [editingGroup, setEditingGroup] = useState<ExpenseGroup | null>(null);
 
   return (
     <div>
@@ -45,7 +47,13 @@ const ExpenseGroupList = () => {
                 </td>
                 <td className="px-6 py-4 text-white">${group.budget}</td>
                 <td className="px-6 py-4 flex justify-start items-center gap-3">
-                  <button className="border font-medium text-yellow-400 p-2">
+                  <button
+                    data-modal-target="default-modal"
+                    data-modal-toggle="default-modal"
+                    type="button"
+                    className="border font-medium text-yellow-400 p-2"
+                    onClick={() => setEditingGroup(group)}
+                  >
                     Edit
                   </button>
                   <button
@@ -63,6 +71,12 @@ const ExpenseGroupList = () => {
           </tbody>
         </table>
         {isDelete ? <DeleteAlert /> : null}
+        {editingGroup && (
+          <UpdateExpenseGroup
+            group={editingGroup}
+            onClose={() => setEditingGroup(null)}
+          />
+        )}
       </div>
     </div>
   );
