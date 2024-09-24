@@ -1,6 +1,15 @@
 import React, { useState } from 'react';
 
-const Header: React.FC = () => {
+import { Link } from 'react-router-dom';
+
+interface HeaderProps{
+  onFeatureClick: () => void;
+  onTeamClick: () => void;
+  onTestimonialsClick: () => void;
+}
+
+
+const Header: React.FC<HeaderProps> = ({onFeatureClick,onTeamClick,onTestimonialsClick}) => {
   const [menuOpen, setMenuOpen] = useState(false);
 
   const handleEnvelopeClick = () => {
@@ -8,7 +17,7 @@ const Header: React.FC = () => {
   };
 
   return (
-    <header className="flex shadow-md py-4 px-4 sm:px-10 bg-white font-sans min-h-[70px] tracking-wide relative z-50">
+    <header className="flex shadow-md py-4 px-4 sm:px-10 bg-white font-sans min-h-[70px] tracking-wide relative z-50 sticky top-0">
       <div className="flex flex-wrap items-center justify-between gap-5 w-full">
         <a
           href="/"
@@ -21,8 +30,10 @@ const Header: React.FC = () => {
         <div id="collapseMenu" className="hidden sm:block">
           <ul className="sm:flex gap-x-5">
             <li>
+              
               <a
                 href="#features"
+                onClick={onFeatureClick}
                 className="hover:text-[#38A169] text-[#333] block font-semibold text-[15px]"
               >
                 Features
@@ -31,6 +42,7 @@ const Header: React.FC = () => {
             <li>
               <a
                 href="#team"
+                onClick={onTeamClick}
                 className="hover:text-[#38A169] text-[#333] block font-semibold text-[15px]"
               >
                 Team
@@ -39,6 +51,7 @@ const Header: React.FC = () => {
             <li>
               <a
                 href="/#testimonials"
+                onClick={onTestimonialsClick}
                 className="hover:text-[#38A169] text-[#333] block font-semibold text-[15px]"
               >
                 Testimonials
@@ -48,9 +61,11 @@ const Header: React.FC = () => {
         </div>
 
         <div className="flex max-sm:hidden">
+          <Link  to="/create-expense-group">
           <button className="px-4 py-2 text-sm rounded-lg font-bold text-white bg-[#38A169] hover:bg-[#2f855a] transition-all duration-300">
             Get started
-          </button>
+          </button> 
+          </Link>
         </div>
 
         <button

@@ -49,7 +49,7 @@ const TestimonialCard: React.FC = () => {
   return (
     <div
       id="#testimonials"
-      className="font-[sans-serif] text-[#333] text-center max-w-xl mx-auto mt-4"
+      className="font-[sans-serif] text-[#333] text-center max-w-xl mx-auto mt-4 pt-12 pb-24"
     >
       <h2 className="text-gray-800 text-3xl font-extrabold border-b-2 border-[#2f855a] inline-block mb-6">
         What Our Customers Say
