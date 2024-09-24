@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useExpenseGroupContext } from '../context/ExpenseGroupContext.tsx';
+import SuccessAlert from './SuccessAlert.tsx';
+import DeleteAlert from './DeleteAlert.tsx';
 
 export interface ExpenseGroup {
   ID: string;
@@ -17,6 +19,7 @@ const ExpenseGroup = () => {
   const [name, setName] = useState('');
   const [description, setDescription] = useState('');
   const [budget, setBudget] = useState('');
+  const [isSuccess, setIsSuccess] = useState(false);
 
   const idGenerator = () => {
     const numericalPart = Math.floor(Math.random() * 10 ** 9);
@@ -27,23 +30,29 @@ const ExpenseGroup = () => {
     idGenerator();
   }, []);
 
-  useEffect(()=>{
-    const storedExpenseGroups = JSON.parse(localStorage.getItem('expenseGroups') || '[]');
+  useEffect(() => {
+    const storedExpenseGroups = JSON.parse(
+      localStorage.getItem('expenseGroups') || '[]'
+    );
     storedExpenseGroups.forEach((group: any) => addExpenseGroup(group));
-  }, [])
+  }, []);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     // Save data to localstorage
     const newExpenseGroup = { ID, name, description, budget };
     addExpenseGroup(newExpenseGroup);
-    const storedExpenseGroups = JSON.parse(localStorage.getItem('expenseGroups') || '[]');
+    const storedExpenseGroups = JSON.parse(
+      localStorage.getItem('expenseGroups') || '[]'
+    );
     storedExpenseGroups.push(newExpenseGroup);
     localStorage.setItem('expenseGroups', JSON.stringify(storedExpenseGroups));
     // Reset form
     setName('');
     setDescription('');
     setBudget('');
+    // Success message
+    setIsSuccess(true);
   };
 
   return (
@@ -100,6 +109,7 @@ const ExpenseGroup = () => {
           Create
         </button>
       </form>
+      {isSuccess ? <SuccessAlert /> : ''}
     </div>
   );
 };
