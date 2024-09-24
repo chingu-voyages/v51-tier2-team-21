@@ -45,8 +45,12 @@ export const ExpenseGroupProvider: React.FC = ({ children }) => {
     });
   };
 
+  const deleteExpenseGroup = (id: string) => {
+    setExpenseGroups((prevGroups) => prevGroups.filter((group) => group.ID !== id));
+  };
+
   return (
-    <ExpenseGroupContext.Provider value={{ expenseGroups, addExpenseGroup }}>
+    <ExpenseGroupContext.Provider value={{ expenseGroups, addExpenseGroup, deleteExpenseGroup }}>
       {children}
     </ExpenseGroupContext.Provider>
   );

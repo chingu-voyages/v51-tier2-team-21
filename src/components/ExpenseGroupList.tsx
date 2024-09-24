@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useExpenseGroupContext } from '../context/ExpenseGroupContext.tsx';
 import DeleteAlert from './DeleteAlert.tsx';
 
 const ExpenseGroupList = () => {
-  const { expenseGroups } = useExpenseGroupContext();
+  const { expenseGroups, deleteExpenseGroup } = useExpenseGroupContext();
+  // const [isDelete, setIsDelete] = useState(false);
 
   return (
     <div>
@@ -47,7 +48,7 @@ const ExpenseGroupList = () => {
                   <button className="border font-medium text-yellow-400 p-2">
                     Edit
                   </button>
-                  <button className="border font-medium text-red-700 p-2">
+                  <button className="border font-medium text-red-700 p-2" onClick={()=> deleteExpenseGroup(group.ID)}>
                     Delete
                   </button>
                 </td>
