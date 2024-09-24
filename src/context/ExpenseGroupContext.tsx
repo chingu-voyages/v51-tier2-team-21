@@ -1,9 +1,10 @@
 import React, { createContext, useState, useContext } from 'react';
 
 interface ExpenseGroup {
+  ID: string;
   name: string;
   description: string;
-  budget: number;
+  budget: string;
 }
 
 interface ExpenseGroupContextType {
