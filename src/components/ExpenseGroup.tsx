@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useExpenseGroupContext } from '../context/ExpenseGroupContext.tsx';
 import SuccessAlert from './SuccessAlert.tsx';
-import DeleteAlert from './DeleteAlert.tsx';
 
 export interface ExpenseGroup {
   ID: string;
@@ -14,7 +13,7 @@ export interface ExpenseGroup {
 }
 
 const ExpenseGroup = () => {
-  const { addExpenseGroup } = useExpenseGroupContext();
+  const { addExpenseGroup, expenseGroups } = useExpenseGroupContext();
   const [ID, setID] = useState('');
   const [name, setName] = useState('');
   const [description, setDescription] = useState('');
@@ -34,8 +33,10 @@ const ExpenseGroup = () => {
     const storedExpenseGroups = JSON.parse(
       localStorage.getItem('expenseGroups') || '[]'
     );
-    storedExpenseGroups.forEach((group: any) => addExpenseGroup(group));
-  }, []);
+    storedExpenseGroups.forEach((group: ExpenseGroup) =>
+      addExpenseGroup(group)
+    );
+  }, [addExpenseGroup, expenseGroups.length]);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();

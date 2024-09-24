@@ -1,4 +1,4 @@
-import React, { createContext, useState, useContext } from 'react';
+import React, { createContext, useState, useContext, useEffect } from 'react';
 
 interface ExpenseGroup {
   ID: string;
@@ -27,10 +27,22 @@ export const useExpenseGroupContext = () => {
 };
 
 export const ExpenseGroupProvider: React.FC = ({ children }) => {
-  const [expenseGroups, setExpenseGroups] = useState<ExpenseGroup[]>([]);
+  const [expenseGroups, setExpenseGroups] = useState<ExpenseGroup[]>(() => {
+    const storedGroups = localStorage.getItem('expenseGroups');
+    return storedGroups ? JSON.parse(storedGroups) : [];
+  });
+
+  useEffect(() => {
+    localStorage.setItem('expenseGroups', JSON.stringify(expenseGroups));
+  }, [expenseGroups]);
 
   const addExpenseGroup = (group: ExpenseGroup) => {
-    setExpenseGroups((prevGroups) => [...prevGroups, group]);
+    setExpenseGroups((prevGroups) => {
+      if (prevGroups.some((g) => g.ID === group.ID)) {
+        return prevGroups;
+      }
+      return [...prevGroups, group];
+    });
   };
 
   return (
