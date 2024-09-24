@@ -1,5 +1,6 @@
 import React from 'react';
 import { useExpenseGroupContext } from '../context/ExpenseGroupContext.tsx';
+import DeleteAlert from './DeleteAlert.tsx';
 
 const ExpenseGroupList = () => {
   const { expenseGroups } = useExpenseGroupContext();
@@ -26,12 +27,10 @@ const ExpenseGroupList = () => {
             </tr>
           </thead>
           <tbody>
-            {expenseGroups.length === 0 && (
-              <p className="p-3">No expense groups found</p>
-            )}
-            {expenseGroups.map((group, index) => (
+            {expenseGroups.length === 0 && <tr>No expense groups found</tr>}
+            {expenseGroups.map((group) => (
               <tr
-                key={index}
+                key={group.ID}
                 className="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700"
               >
                 <th
