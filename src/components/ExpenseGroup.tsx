@@ -1,19 +1,61 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useExpenseGroupContext } from '../context/ExpenseGroupContext.tsx';
+import SuccessAlert from './SuccessAlert.tsx';
+
+export interface ExpenseGroup {
+  ID: string;
+
+  name: string;
+
+  description: string;
+
+  budget: string;
+}
 
 const ExpenseGroup = () => {
-  const { addExpenseGroup } = useExpenseGroupContext();
+  const { addExpenseGroup, expenseGroups } = useExpenseGroupContext();
+  const [ID, setID] = useState('');
   const [name, setName] = useState('');
   const [description, setDescription] = useState('');
-  const [budget, setBudget] = useState(0);
+  const [budget, setBudget] = useState('');
+  const [isSuccess, setIsSuccess] = useState(false);
+
+  const idGenerator = () => {
+    const numericalPart = Math.floor(Math.random() * 10 ** 9);
+    setID(String(numericalPart));
+  };
+
+  useEffect(() => {
+    idGenerator();
+  }, []);
+
+  useEffect(() => {
+    const storedExpenseGroups = JSON.parse(
+      localStorage.getItem('expenseGroups') || '[]'
+    );
+    storedExpenseGroups.forEach((group: ExpenseGroup) =>
+      addExpenseGroup(group)
+    );
+  }, [addExpenseGroup, expenseGroups.length]);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    addExpenseGroup({ name, description, budget });
+    // Save data to localstorage
+    const newExpenseGroup = { ID, name, description, budget };
+    addExpenseGroup(newExpenseGroup);
+    const storedExpenseGroups = JSON.parse(
+      localStorage.getItem('expenseGroups') || '[]'
+    );
+    storedExpenseGroups.push(newExpenseGroup);
+    localStorage.setItem('expenseGroups', JSON.stringify(storedExpenseGroups));
+    // Reset form
     setName('');
     setDescription('');
-    setBudget(0);
+    setBudget('');
+    // Success message
+    setIsSuccess(true);
   };
+
   return (
     <div>
       <h1>Expense Group</h1>
@@ -45,9 +87,9 @@ const ExpenseGroup = () => {
             >
               <path
                 stroke="currentColor"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
                 d="M5 2a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1M2 5h12a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1Zm8 5a2 2 0 1 1-4 0 2 2 0 0 1 4 0Z"
               />
             </svg>
@@ -57,7 +99,7 @@ const ExpenseGroup = () => {
             className="block p-2.5 w-full z-20 ps-10 text-sm text-gray-900 bg-gray-50 rounded-s-lg border-e-gray-50 border-e-2 border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-e-gray-700  dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:border-blue-500"
             placeholder="Enter Budget"
             value={budget}
-            onChange={(e) => setBudget(Number(e.target.value))}
+            onChange={(e) => setBudget(e.target.value)}
             required
           />
         </div>
@@ -68,6 +110,7 @@ const ExpenseGroup = () => {
           Create
         </button>
       </form>
+      {isSuccess ? <SuccessAlert /> : ''}
     </div>
   );
 };

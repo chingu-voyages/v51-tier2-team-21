@@ -1,11 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import Footer from './components/Footer.tsx';
-import FeaturesSection from './components/FeaturesSection.tsx';
-import Header from './components/Header.tsx';
-import HeroSection from './components/Hero.tsx';
-import TeamSection from './components/TeamSection.tsx';
-import TestimonialCard from './components/TestimonialsSection.tsx';
 
 function Layout({ element }) {
   return (
