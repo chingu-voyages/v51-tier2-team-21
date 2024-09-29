@@ -22,7 +22,6 @@ function ExpenseList() {
   const onCloseForm = () => {
     setIsFormVisible(false);
   };
-  /*console.log(JSON.parse(localStorage.getItem('expenses')));*/
 
   //Create new Expense
   const onCreateExpense = (newExpense) => {
@@ -57,7 +56,7 @@ function ExpenseList() {
 
   return (
     <>
-      <form className="flex justify-between p-4">
+      <form className="flex justify-between p-4 gap-4 flex-wrap">
         <h2 className="text-xl font-semibold text-gray-900 dark:text-white">
           Expenses
         </h2>
@@ -69,13 +68,22 @@ function ExpenseList() {
         <ExpenseForm createExpense={onCreateExpense} onClose={onCloseForm} />
       )}
       {isSuccess ? <SuccessAlert text="a new Expense" /> : ''}
-      {expenses.map((expense, index) => (
-        <Expense
-          key={index}
-          expense={expense}
-          onDelete={() => onDeleteExpense(index)}
-        />
-      ))}
+      <div className=" p-4 rounded-xl shadow-md ">
+        <ul className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-4 p-4 text-center md:text-left rounded-t-lg text-xs font-bold shadow-md text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+          <li>Name</li>
+          <li>Category</li>
+          <li>Description</li>
+          <li className="md:text-right">Amount</li>
+        </ul>
+
+        {expenses.map((expense, index) => (
+          <Expense
+            key={index}
+            expense={expense}
+            onDelete={() => onDeleteExpense(index)}
+          />
+        ))}
+      </div>
     </>
   );
 }
