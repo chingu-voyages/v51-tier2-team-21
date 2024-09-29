@@ -110,7 +110,7 @@ const ExpenseGroup = () => {
           Create
         </button>
       </form>
-      {isSuccess ? <SuccessAlert /> : ''}
+      {isSuccess ? <SuccessAlert text="an expense group" /> : ''}
     </div>
   );
 };
