@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Expense from './Expense.tsx';
 import ExpenseForm from './ExpenseForm.tsx';
 import SuccessAlert from './SuccessAlert.tsx';
@@ -8,6 +8,12 @@ function ExpenseList() {
   const [isFormVisible, setIsFormVisible] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
 
+  useEffect(() => {
+    //Load Expenses
+    const storedExpenses = JSON.parse(localStorage.getItem('expenses') || '[]');
+    setExpenses(storedExpenses);
+  }, []);
+
   const onShowForm = (event) => {
     event.preventDefault();
     setIsFormVisible(!isFormVisible);
@@ -16,14 +22,37 @@ function ExpenseList() {
   const onCloseForm = () => {
     setIsFormVisible(false);
   };
+  /*console.log(JSON.parse(localStorage.getItem('expenses')));*/
 
   //Create new Expense
   const onCreateExpense = (newExpense) => {
-    setExpenses((prevExpenses) => [...prevExpenses, newExpense]);
+    setExpenses((prevExpenses) => {
+      //Add a new Expense
+      const updatedExpenses = [...prevExpenses, newExpense];
+
+      //Save Expense in localStorage
+      localStorage.setItem('expenses', JSON.stringify(updatedExpenses));
+
+      return updatedExpenses;
+    });
+
     //Close form
     onCloseForm();
     // Success message
     setIsSuccess(true);
+    //Hide message
+    setTimeout(() => setIsSuccess(false), 3000);
+  };
+
+  const onDeleteExpense = (indexToDelete) => {
+    setExpenses((prevExpenses) => {
+      const updatedExpenses = prevExpenses.filter(
+        (_, index) => index !== indexToDelete
+      );
+      //Update Expense List
+      localStorage.setItem('expenses', JSON.stringify(updatedExpenses));
+      return updatedExpenses;
+    });
   };
 
   return (
@@ -41,7 +70,11 @@ function ExpenseList() {
       )}
       {isSuccess ? <SuccessAlert text="a new Expense" /> : ''}
       {expenses.map((expense, index) => (
-        <Expense key={index} expense={expense} />
+        <Expense
+          key={index}
+          expense={expense}
+          onDelete={() => onDeleteExpense(index)}
+        />
       ))}
     </>
   );
