@@ -70,7 +70,7 @@ const ExpenseGroupList = () => {
             ))}
           </tbody>
         </table>
-        {isDelete ? <DeleteAlert /> : null}
+        {isDelete ? <DeleteAlert text="an expense group" /> : null}
         {editingGroup && (
           <UpdateExpenseGroup
             group={editingGroup}

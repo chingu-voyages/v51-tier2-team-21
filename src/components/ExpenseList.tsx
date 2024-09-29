@@ -2,11 +2,13 @@ import { useState, useEffect } from 'react';
 import Expense from './Expense.tsx';
 import ExpenseForm from './ExpenseForm.tsx';
 import SuccessAlert from './SuccessAlert.tsx';
+import DeleteAlert from './DeleteAlert.tsx';
 
 function ExpenseList() {
   const [expenses, setExpenses] = useState([]);
   const [isFormVisible, setIsFormVisible] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
+  const [isDelete, setIsDelete] = useState(false);
 
   useEffect(() => {
     //Load Expenses
@@ -50,6 +52,12 @@ function ExpenseList() {
       );
       //Update Expense List
       localStorage.setItem('expenses', JSON.stringify(updatedExpenses));
+
+      //Delete message
+      setIsDelete(true);
+      //Hide message
+      setTimeout(() => setIsDelete(false), 3000);
+
       return updatedExpenses;
     });
   };
@@ -68,6 +76,7 @@ function ExpenseList() {
         <ExpenseForm createExpense={onCreateExpense} onClose={onCloseForm} />
       )}
       {isSuccess ? <SuccessAlert text="a new Expense" /> : ''}
+      {isDelete ? <DeleteAlert text="an Expense" /> : ''}
       <div className=" p-4 rounded-xl shadow-md ">
         <ul className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-4 p-4 text-center md:text-left rounded-t-lg text-xs font-bold shadow-md text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
           <li>Name</li>
