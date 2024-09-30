@@ -6,6 +6,7 @@ import DeleteAlert from './DeleteAlert.tsx';
 
 function ExpenseList() {
   const [expenses, setExpenses] = useState([]);
+  const [editExpense, setEditExpense] = useState(null);
   const [isFormVisible, setIsFormVisible] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
   const [isDelete, setIsDelete] = useState(false);
@@ -16,8 +17,8 @@ function ExpenseList() {
     setExpenses(storedExpenses);
   }, []);
 
-  const onShowForm = (event) => {
-    event.preventDefault();
+  const onShowCreateForm = () => {
+    setEditExpense(null);
     setIsFormVisible(!isFormVisible);
   };
 
@@ -25,11 +26,18 @@ function ExpenseList() {
     setIsFormVisible(false);
   };
 
-  //Create new Expense
-  const onCreateExpense = (newExpense) => {
+  //Create or edit Expense
+  const onCreateExpense = (newExpense, index = null) => {
     setExpenses((prevExpenses) => {
-      //Add a new Expense
-      const updatedExpenses = [...prevExpenses, newExpense];
+      let updatedExpenses;
+      if (index !== null) {
+        //Edit expense
+        updatedExpenses = [...prevExpenses];
+        updatedExpenses[index] = newExpense;
+      } else {
+        //Add a new Expense
+        updatedExpenses = [...prevExpenses, newExpense];
+      }
 
       //Save Expense in localStorage
       localStorage.setItem('expenses', JSON.stringify(updatedExpenses));
@@ -39,10 +47,13 @@ function ExpenseList() {
 
     //Close form
     onCloseForm();
-    // Success message
-    setIsSuccess(true);
-    //Hide message
-    setTimeout(() => setIsSuccess(false), 3000);
+
+    if (!index) {
+      // Success message
+      setIsSuccess(true);
+      //Hide message
+      setTimeout(() => setIsSuccess(false), 3000);
+    }
   };
 
   const onDeleteExpense = (indexToDelete) => {
@@ -62,18 +73,33 @@ function ExpenseList() {
     });
   };
 
+  const onEditExpense = (indexToEdit) => {
+    const expenseToEdit = expenses[indexToEdit];
+
+    setEditExpense({ ...expenseToEdit, index: indexToEdit });
+    setIsFormVisible(!isFormVisible);
+  };
+
   return (
     <>
       <form className="flex justify-between p-4 gap-4 flex-wrap">
         <h2 className="text-xl font-semibold text-gray-900 dark:text-white">
           Expenses
         </h2>
-        <button type="button" className="button-style" onClick={onShowForm}>
+        <button
+          type="button"
+          className="button-style"
+          onClick={onShowCreateForm}
+        >
           Create new
         </button>
       </form>
       {isFormVisible && (
-        <ExpenseForm createExpense={onCreateExpense} onClose={onCloseForm} />
+        <ExpenseForm
+          createExpense={onCreateExpense}
+          onClose={onCloseForm}
+          editExpense={editExpense}
+        />
       )}
       {isSuccess ? <SuccessAlert text="a new Expense" /> : ''}
       {isDelete ? <DeleteAlert text="an Expense" /> : ''}
@@ -89,6 +115,7 @@ function ExpenseList() {
           <Expense
             key={index}
             expense={expense}
+            onEdit={() => onEditExpense(index)}
             onDelete={() => onDeleteExpense(index)}
           />
         ))}

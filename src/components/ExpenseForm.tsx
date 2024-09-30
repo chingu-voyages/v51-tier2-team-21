@@ -1,11 +1,20 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import CloseBtn from '../img/close-button.svg';
 
-function ExpenseForm({ createExpense, onClose }) {
+function ExpenseForm({ createExpense, onClose, editExpense }) {
   const [expenseName, setExpenseName] = useState('');
   const [expenseType, setExpenseType] = useState('');
   const [description, setDescription] = useState('');
   const [amount, setAmount] = useState('');
+
+  useEffect(() => {
+    if (editExpense) {
+      setExpenseName(editExpense.expenseName);
+      setExpenseType(editExpense.expenseType);
+      setDescription(editExpense.description);
+      setAmount(editExpense.amount);
+    }
+  }, [editExpense]);
 
   const onSaveExpense = (event) => {
     event.preventDefault();
@@ -17,7 +26,14 @@ function ExpenseForm({ createExpense, onClose }) {
       description,
       amount: parseFloat(amount),
     };
-    createExpense(newExpense);
+
+    if (editExpense) {
+      //Edit
+      createExpense(newExpense, editExpense.index);
+    } else {
+      //Create
+      createExpense(newExpense);
+    }
 
     //Clear fields
     setExpenseName('');
@@ -38,7 +54,7 @@ function ExpenseForm({ createExpense, onClose }) {
             <img src={CloseBtn} className="w-4 h-4 m-2" alt="Close" />
           </button>
           <h2 className="text-xl font-semibold text-gray-900 dark:text-white">
-            Create new expense
+            {editExpense ? 'Edit expense' : 'Create new expense'}
           </h2>
           <div className="flex flex-col gap-2">
             <input
@@ -85,7 +101,7 @@ function ExpenseForm({ createExpense, onClose }) {
               required
             />
             <button className="button-style" type="submit">
-              Create
+              Save
             </button>
           </div>
         </form>
