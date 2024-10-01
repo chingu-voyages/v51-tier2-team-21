@@ -68,6 +68,18 @@ function Layout({ element }) {
                 <span className="ms-3">Expense Group List</span>
               </Link>
             </li>
+            <li>
+              <Link
+                to="/expenses"
+                className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
+              >
+                <img
+                  src="https://img.icons8.com/?size=30&id=gNFSfoMaJFAN&format=png&color=000000"
+                  alt="expense-foreground-selected"
+                />
+                <span className="ms-3">Expenses</span>
+              </Link>
+            </li>
           </ul>
         </div>
       </aside>

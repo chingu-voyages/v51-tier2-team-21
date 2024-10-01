@@ -10,6 +10,7 @@ import LandingPage from './components/LandingPage.tsx';
 import Layout from './Layout.tsx';
 import React from 'react';
 import ReactDOM from 'react-dom/client';
+import ExpenseList from './components/ExpenseList.tsx';
 
 const router = createBrowserRouter([
   {
@@ -23,6 +24,10 @@ const router = createBrowserRouter([
   {
     path: '/expense-group-list',
     element: <Layout element={<ExpenseGroupList />} />,
+  },
+  {
+    path: '/expenses',
+    element: <Layout element={<ExpenseList />} />,
   },
 ]);
 
