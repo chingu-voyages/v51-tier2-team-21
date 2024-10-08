@@ -1,11 +1,20 @@
-import { useEffect, useState } from 'react';
+import React , { useEffect, useState } from 'react';
 import CloseBtn from '../img/close-button.svg';
+import FileUploader from '../FileUpload.tsx';
+import {ref, uploadBytes, getDownloadURL} from "firebase/storage"
+import {storage} from "../firebase.ts"
 
-function ExpenseForm({ createExpense, onClose, editExpense }) {
+interface ExpenseFormProps {
+  createExpense: (expense: any) => void;
+}
+
+const ExpenseForm: React.FC<ExpenseFormProps>= ({ createExpense, onClose, editExpense }) => {
   const [expenseName, setExpenseName] = useState('');
   const [expenseType, setExpenseType] = useState('');
   const [description, setDescription] = useState('');
   const [amount, setAmount] = useState('');
+  const [imageFile, setImageFile] = useState<File | null>(null);
+  const [image, setImage] = useState('');
 
   useEffect(() => {
     if (editExpense) {
@@ -13,11 +22,19 @@ function ExpenseForm({ createExpense, onClose, editExpense }) {
       setExpenseType(editExpense.expenseType);
       setDescription(editExpense.description);
       setAmount(editExpense.amount);
+      setImage(editExpense.image || '')
     }
   }, [editExpense]);
 
-  const onSaveExpense = (event) => {
+  const onSaveExpense = async (event) => {
     event.preventDefault();
+
+    let uploadedImageUrl = '';
+    if (imageFile) {
+      const imgRef = ref(storage, `images/${imageFile.name}`);
+      await uploadBytes(imgRef, imageFile);
+      uploadedImageUrl = await getDownloadURL(imgRef);
+    }
 
     //Create new Expense
     const newExpense = {
@@ -25,7 +42,9 @@ function ExpenseForm({ createExpense, onClose, editExpense }) {
       expenseType,
       description,
       amount: parseFloat(amount),
+      image: uploadedImageUrl,
     };
+    
 
     if (editExpense) {
       //Edit
@@ -40,7 +59,12 @@ function ExpenseForm({ createExpense, onClose, editExpense }) {
     setExpenseType('');
     setDescription('');
     setAmount('');
+    setImageFile(null)
+    setImage('');
   };
+
+  
+
 
   return (
     <div className="backdrop fixed inset-0 bg-black bg-opacity-50 z-40 flex justify-center items-center">
@@ -100,11 +124,13 @@ function ExpenseForm({ createExpense, onClose, editExpense }) {
               onChange={(e) => setAmount(e.target.value)}
               required
             />
+            <FileUploader onFileUpload={(file) => setImageFile(file)} />
             <button className="button-style" type="submit">
               Save
             </button>
           </div>
         </form>
+        {image && <img src={image} alt="Uploaded receipt" className="mt-4" />}
       </div>
     </div>
   );
