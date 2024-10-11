@@ -1,59 +1,36 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useExpenseGroupContext } from '../context/ExpenseGroupContext.tsx';
-import SuccessAlert from './SuccessAlert.tsx';
-
-export interface ExpenseGroup {
-  ID: string;
-
-  name: string;
-
-  description: string;
-
-  budget: string;
-}
 
 const ExpenseGroup = () => {
-  const { addExpenseGroup, expenseGroups } = useExpenseGroupContext();
-  const [ID, setID] = useState('');
+  const { addExpenseGroup } = useExpenseGroupContext();
   const [name, setName] = useState('');
   const [description, setDescription] = useState('');
   const [budget, setBudget] = useState('');
+  const [selectedPeople, setSelectedPeople] = useState<string[]>([]);
   const [isSuccess, setIsSuccess] = useState(false);
-
-  const idGenerator = () => {
-    const numericalPart = Math.floor(Math.random() * 10 ** 9);
-    setID(String(numericalPart));
-  };
-
-  useEffect(() => {
-    idGenerator();
-  }, []);
-
-  useEffect(() => {
-    const storedExpenseGroups = JSON.parse(
-      localStorage.getItem('expenseGroups') || '[]'
-    );
-    storedExpenseGroups.forEach((group: ExpenseGroup) =>
-      addExpenseGroup(group)
-    );
-  }, [addExpenseGroup, expenseGroups.length]);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // Save data to localstorage
-    const newExpenseGroup = { ID, name, description, budget };
-    addExpenseGroup(newExpenseGroup);
-    const storedExpenseGroups = JSON.parse(
-      localStorage.getItem('expenseGroups') || '[]'
-    );
-    storedExpenseGroups.push(newExpenseGroup);
-    localStorage.setItem('expenseGroups', JSON.stringify(storedExpenseGroups));
-    // Reset form
-    setName('');
-    setDescription('');
-    setBudget('');
-    // Success message
+    const newGroup = {
+      ID: Date.now().toString(),
+      name,
+      description,
+      budget,
+      people: selectedPeople,
+    };
+    addExpenseGroup(newGroup);
     setIsSuccess(true);
+  };
+
+  const handlePeopleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    const options = e.target.options;
+    const selected: string[] = [];
+    for (let i = 0; i < options.length; i++) {
+      if (options[i].selected) {
+        selected.push(options[i].value);
+      }
+    }
+    setSelectedPeople(selected);
   };
 
   return (
@@ -76,41 +53,33 @@ const ExpenseGroup = () => {
           onChange={(e) => setDescription(e.target.value)}
           required
         ></textarea>
-        <div className="relative w-full">
-          <div className="absolute inset-y-0 start-0 top-0 flex items-center ps-3.5 pointer-events-none">
-            <svg
-              className="w-4 h-4 text-gray-500 dark:text-gray-400"
-              aria-hidden="true"
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 20 16"
-            >
-              <path
-                stroke="currentColor"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                d="M5 2a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1M2 5h12a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1Zm8 5a2 2 0 1 1-4 0 2 2 0 0 1 4 0Z"
-              />
-            </svg>
-          </div>
-          <input
-            type="number"
-            className="block p-2.5 w-full z-20 ps-10 text-sm text-gray-900 bg-gray-50 rounded-s-lg border-e-gray-50 border-e-2 border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-e-gray-700  dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:border-blue-500"
-            placeholder="Enter Budget"
-            value={budget}
-            onChange={(e) => setBudget(e.target.value)}
-            required
-          />
-        </div>
+        <input
+          type="number"
+          className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+          placeholder="Budget"
+          value={budget}
+          onChange={(e) => setBudget(e.target.value)}
+          required
+        />
+        <select
+          multiple
+          className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+          value={selectedPeople}
+          onChange={handlePeopleChange}
+        >
+          <option value="Person1">Person 1</option>
+          <option value="Person2">Person 2</option>
+          <option value="Person3">Person 3</option>
+          {/* Add more options as needed */}
+        </select>
         <button
           type="submit"
-          className="focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800"
+          className="bg-blue-500 text-white rounded-lg p-2.5 focus:ring-blue-500 focus:border-blue-500"
         >
-          Create
+          Submit
         </button>
       </form>
-      {isSuccess ? <SuccessAlert text="an expense group" /> : ''}
+      {isSuccess && <p className="text-green-500">Expense group saved successfully!</p>}
     </div>
   );
 };
