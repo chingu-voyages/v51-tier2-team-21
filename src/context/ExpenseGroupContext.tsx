@@ -59,7 +59,12 @@ export const ExpenseGroupProvider: React.FC = ({ children }) => {
 
   return (
     <ExpenseGroupContext.Provider
-      value={{ expenseGroups, addExpenseGroup, deleteExpenseGroup, updateExpenseGroup }}
+      value={{
+        expenseGroups,
+        addExpenseGroup,
+        deleteExpenseGroup,
+        updateExpenseGroup,
+      }}
     >
       {children}
     </ExpenseGroupContext.Provider>

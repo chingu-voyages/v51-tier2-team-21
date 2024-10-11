@@ -79,7 +79,9 @@ const ExpenseGroup = () => {
           Submit
         </button>
       </form>
-      {isSuccess && <p className="text-green-500">Expense group saved successfully!</p>}
+      {isSuccess && (
+        <p className="text-green-500">Expense group saved successfully!</p>
+      )}
     </div>
   );
 };

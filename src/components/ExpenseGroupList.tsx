@@ -72,10 +72,8 @@ const ExpenseGroupList = () => {
                   >
                     Delete
                   </button>
-                  <button
-                    className="border font-medium text-blue-700 p-2"
-                    >
-                      <Link to='/expenses'>Add new expense</Link>
+                  <button className="border font-medium text-blue-700 p-2">
+                    <Link to="/expenses">Add new expense</Link>
                   </button>
                 </td>
               </tr>
