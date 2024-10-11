@@ -1,5 +1,8 @@
 interface ExpenseProps {
   expense: string;
+  image?: string;
+  onEdit: string;
+  onDelete: string;
 }
 
 const Expense: React.FC<ExpenseProps> = ({ expense, onEdit, onDelete }) => {
@@ -9,7 +12,12 @@ const Expense: React.FC<ExpenseProps> = ({ expense, onEdit, onDelete }) => {
       <li>{expense.expenseType}</li>
       <li className="truncate">{expense.description}</li>
       <li className="md:text-right">{expense.amount}</li>
-      <li className="sm:col-span-2 md:col-start-3 lg:col-start-5">
+      {expense.image && (
+        <div>
+          <img src={expense.image} alt="expense reciept" style={{ width: "100px", height: "100px", objectFit: "cover" }}/>
+        </div>
+      )}
+        <li className="sm:col-span-2 md:col-start-3 lg:col-start-5">
         <button
           type="button"
           onClick={onEdit}
@@ -25,6 +33,9 @@ const Expense: React.FC<ExpenseProps> = ({ expense, onEdit, onDelete }) => {
           Delete
         </button>
       </li>
+
+      
+      
     </ul>
   );
 };
