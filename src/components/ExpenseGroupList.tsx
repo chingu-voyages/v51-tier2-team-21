@@ -2,11 +2,12 @@ import React, { useState } from 'react';
 import { useExpenseGroupContext } from '../context/ExpenseGroupContext.tsx';
 import DeleteAlert from './DeleteAlert.tsx';
 import UpdateExpenseGroup from './UpdateExpenseGroup.tsx';
+import { Link } from 'react-router-dom';
 
 const ExpenseGroupList = () => {
   const { expenseGroups, deleteExpenseGroup } = useExpenseGroupContext();
   const [isDelete, setIsDelete] = useState(false);
-  const [editingGroup, setEditingGroup] = useState<ExpenseGroup | null>(null);
+  const [editingGroup, setEditingGroup] = useState<any | null>(null);
 
   return (
     <div>
@@ -23,6 +24,9 @@ const ExpenseGroupList = () => {
               </th>
               <th scope="col" className="px-6 py-3">
                 Budget
+              </th>
+              <th scope="col" className="px-6 py-3">
+                People
               </th>
               <th scope="col" className="px-6 py-3">
                 Actions
@@ -46,6 +50,9 @@ const ExpenseGroupList = () => {
                   {group.description.slice(0, 30)} ...
                 </td>
                 <td className="px-6 py-4 text-white">${group.budget}</td>
+                <td className="px-6 py-4 text-white">
+                  {group.people.join(', ')}
+                </td>
                 <td className="px-6 py-4 flex justify-start items-center gap-3">
                   <button
                     data-modal-target="default-modal"
@@ -64,6 +71,9 @@ const ExpenseGroupList = () => {
                     }}
                   >
                     Delete
+                  </button>
+                  <button className="border font-medium text-blue-700 p-2">
+                    <Link to="/expenses">Add new expense</Link>
                   </button>
                 </td>
               </tr>

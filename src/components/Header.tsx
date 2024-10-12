@@ -2,14 +2,17 @@ import React, { useState } from 'react';
 
 import { Link } from 'react-router-dom';
 
-interface HeaderProps{
+interface HeaderProps {
   onFeatureClick: () => void;
   onTeamClick: () => void;
   onTestimonialsClick: () => void;
 }
 
-
-const Header: React.FC<HeaderProps> = ({onFeatureClick,onTeamClick,onTestimonialsClick}) => {
+const Header: React.FC<HeaderProps> = ({
+  onFeatureClick,
+  onTeamClick,
+  onTestimonialsClick,
+}) => {
   const [menuOpen, setMenuOpen] = useState(false);
 
   const handleEnvelopeClick = () => {
@@ -30,7 +33,6 @@ const Header: React.FC<HeaderProps> = ({onFeatureClick,onTeamClick,onTestimonial
         <div id="collapseMenu" className="hidden sm:block">
           <ul className="sm:flex gap-x-5">
             <li>
-              
               <a
                 href="#features"
                 onClick={onFeatureClick}
@@ -61,10 +63,10 @@ const Header: React.FC<HeaderProps> = ({onFeatureClick,onTeamClick,onTestimonial
         </div>
 
         <div className="flex max-sm:hidden">
-          <Link  to="/create-expense-group">
-          <button className="px-4 py-2 text-sm rounded-lg font-bold text-white bg-[#38A169] hover:bg-[#2f855a] transition-all duration-300">
-            Get started
-          </button> 
+          <Link to="/create-expense-group">
+            <button className="px-4 py-2 text-sm rounded-lg font-bold text-white bg-[#38A169] hover:bg-[#2f855a] transition-all duration-300">
+              Get started
+            </button>
           </Link>
         </div>
 

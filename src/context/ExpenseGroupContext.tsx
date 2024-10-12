@@ -5,6 +5,7 @@ interface ExpenseGroup {
   name: string;
   description: string;
   budget: string;
+  people: string[];
 }
 
 interface ExpenseGroupContextType {
@@ -39,12 +40,7 @@ export const ExpenseGroupProvider: React.FC = ({ children }) => {
   }, [expenseGroups]);
 
   const addExpenseGroup = (group: ExpenseGroup) => {
-    setExpenseGroups((prevGroups) => {
-      if (prevGroups.some((g) => g.ID === group.ID)) {
-        return prevGroups;
-      }
-      return [...prevGroups, group];
-    });
+    setExpenseGroups((prevGroups) => [...prevGroups, group]);
   };
 
   const deleteExpenseGroup = (id: string) => {
