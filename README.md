@@ -50,3 +50,5 @@ Check the app at the indicated local link (ex: http://localhost:3000).
 - Nadiia Lashtun: [GitHub](https://github.com/NadiiaLashtun) / [LinkedIn](https://www.linkedin.com/in/lashtun/)
 - Oluwadunsin Falore [Github](https://github.com/Dunsin0802) / [LinkedIn](http://linkedin.com/in/oluwadunsin-falore)
 
+- Oluwadunsin Falore [GitHub](https://github.com/Dunsin0802) / [LinkedIn](https://www.linkedin.com/in/oluwadunsin-falore/)
+- Teammate name #n: [GitHub](https://github.com/ghaccountname) / [LinkedIn](https://linkedin.com/in/liaccountname)
